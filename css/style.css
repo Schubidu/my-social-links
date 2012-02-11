@@ -6,6 +6,7 @@ html, body, h1, ul, li {
 html {
 	min-height: 100%;
 	min-width: 100%;
+	background-color: #efefef; /* Old browsers */
 }
 
 body {
@@ -14,14 +15,6 @@ body {
 	width: 100%;
 	min-height: 100%;
 	color: #333;
-	background: #efefef; /* Old browsers */
-	background: -moz-linear-gradient(top, #efefef 0%, #ffffff 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #efefef), color-stop(100%, #ffffff)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #efefef 0%, #ffffff 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #efefef 0%, #ffffff 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #efefef 0%, #ffffff 100%); /* IE10+ */
-	background: linear-gradient(top, #efefef 0%, #ffffff 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#efefef', endColorstr = '#ffffff', GradientType = 0); /* IE6-9 */
 }
 
 a {
@@ -40,11 +33,15 @@ li {
 	position: relative;
 }
 
-ul:hover li {
+li:hover {
+	background: #fff;
+}
+
+ul:hover li a {
 	opacity: .2;
 }
 
-ul:hover li:hover {
+ul:hover li a:hover {
 	opacity: 1;
 }
 
@@ -69,6 +66,13 @@ ul {
 	height: 0;
 }
 
+html, li {
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
 li {
 	display: inline-block;
 	position: relative;
@@ -76,10 +80,6 @@ li {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	transition: all .3s ease;
 }
 
 li a {
@@ -89,15 +89,18 @@ li a {
 	position: relative;
 }
 
+html, li a:before {
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, .3), transparent);
+	background-image: -moz-linear-gradient(rgba(255, 255, 255, .3), transparent);
+	background-image: -ms-linear-gradient(rgba(255, 255, 255, .3), transparent);
+	background-image: -o-linear-gradient(rgba(255, 255, 255, .3), transparent);
+	background-image: linear-gradient(rgba(255, 255, 255, .3), transparent);
+}
+
 li a:before {
 	content: '';
 	position: absolute;
 
-	background: -webkit-linear-gradient(rgba(255, 255, 255, .3), transparent);
-	background: -moz-linear-gradient(rgba(255, 255, 255, .3), transparent);
-	background: -ms-linear-gradient(rgba(255, 255, 255, .3), transparent);
-	background: -o-linear-gradient(rgba(255, 255, 255, .3), transparent);
-	background: linear-gradient(rgba(255, 255, 255, .3), transparent);
 
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -112,6 +115,7 @@ li a:before {
 	bottom: 1px;
 	right: 1px;
 }
+
 
 @media only all and (min-width: 720px) {
 	h1, ul, li {

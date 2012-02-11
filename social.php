@@ -63,6 +63,7 @@ $title = 'Stefan Schult';
 <head>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1" />
 	<link href='css/style.css' rel="stylesheet" type='text/css' />
+	<script src="js/functions.js"></script>
 	<title><?php echo $title ?></title>
 
 </head>
