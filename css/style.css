@@ -210,6 +210,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/48x48/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/48x48/flickr.png);}
 	a.icon-youtube {background-image: url(../images/48x48/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/48x48/vimeo.png);}
 }
 @media only all {
 	a {width: 64px; height:64px;}
@@ -232,6 +233,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/96x96/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/96x96/flickr.png);}
 	a.icon-youtube {background-image: url(../images/96x96/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/96x96/vimeo.png);}
 }
 @media only all and (min-width: 720px) {
 	a {width: 96px; height:96px;}
@@ -254,6 +256,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/128x128/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/128x128/flickr.png);}
 	a.icon-youtube {background-image: url(../images/128x128/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/128x128/vimeo.png);}
 }
 @media only all and (min-width: 1024px) {
 	a {width: 128px; height:128px;}
@@ -276,6 +279,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/256x256/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/256x256/flickr.png);}
 	a.icon-youtube {background-image: url(../images/256x256/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/256x256/vimeo.png);}
 }
 @media only all and (min-width: 1280px) {
 	a {width: 256px; height:256px;}
@@ -298,6 +302,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/256x256/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/256x256/flickr.png);}
 	a.icon-youtube {background-image: url(../images/256x256/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/256x256/vimeo.png);}
 }
 @media only screen and (min-device-width: 720px) and (max-device-width: 1024px) {
 	a {width: 224px; height:224px;}
@@ -320,6 +325,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/256x256/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/256x256/flickr.png);}
 	a.icon-youtube {background-image: url(../images/256x256/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/256x256/vimeo.png);}
 }
 @media only screen and (min-device-width: 720px) and (max-device-width: 1024px) and (orientation:portrait) {
 	a {width: 192px; height:192px;}
@@ -342,6 +348,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/128x128/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/128x128/flickr.png);}
 	a.icon-youtube {background-image: url(../images/128x128/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/128x128/vimeo.png);}
 }
 @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
 	a {width: 84px; height:84px;}
@@ -364,6 +371,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/96x96/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/96x96/flickr.png);}
 	a.icon-youtube {background-image: url(../images/96x96/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/96x96/vimeo.png);}
 }
 @media only screen and (max-device-width: 480px) and (orientation:portrait) {
 	a {width: 96px; height:96px;}
@@ -386,6 +394,7 @@ li a:before {
 	a.icon-lastfm {background-image: url(../images/256x256/lastfm.png);}
 	a.icon-flickr {background-image: url(../images/256x256/flickr.png);}
 	a.icon-youtube {background-image: url(../images/256x256/youtube.png);}
+	a.icon-vimeo {background-image: url(../images/256x256/vimeo.png);}
 }
 @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
 	a {width: 96px; height:96px;}
