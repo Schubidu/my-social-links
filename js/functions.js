@@ -37,7 +37,7 @@
 				link.addEventListener('mouseover', function () {
 					var color = colors[i];
 					if (color)
-						docElem.style.backgroundColor = 'rgb(' + color.join(',') +')';
+						docElem.style.backgroundColor = 'rgb(' + color.join(',') + ')';
 				});
 				link.addEventListener('mouseout', function () {
 					docElem.style.backgroundColor = '';

@@ -1,5 +1,5 @@
 ##Google Plus|https://plus.google.com/102735685302851440054/##
-Redirect 301 /google-plus http://schultstefan.de/track?v=/plus
+Redirect 301 /google-plus http://schultstefan.de/track?v=/google-plus
 ##Xing|https://www.xing.com/profile/Stefan_Schult2##
 Redirect 301 /xing http://schultstefan.de/track?v=/xing
 ##Twitter|https://twitter.com/schubidu##
@@ -14,6 +14,8 @@ Redirect 301 /lastfm http://schultstefan.de/track?v=/lastfm
 Redirect 301 /flickr http://schultstefan.de/track?v=/flickr
 ##youtube|http://www.youtube.com/schubidu80##
 Redirect 301 /youtube http://schultstefan.de/track?v=/youtube
+##vimeo|http://vimeo.com/user6599185##
+Redirect 301 /vimeo http://schultstefan.de/track?v=/vimeo
 ###
 Redirect 301 /+ /google-plus
 Redirect 301 /plus /google-plus

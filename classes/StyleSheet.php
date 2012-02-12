@@ -49,7 +49,6 @@ class StyleSheet
 		$height = $this->getHeight();
 		$ret = "@media only $query {\n";
 		if($width !== 0 && $height !== 0){
-			var_dump('hello');
 			$ret.="\ta {width: ".$width."px; height:".$height."px;}\n";
 		} elseif ($width !== 0 &&  $height === 0){
 			$ret.="\ta {width: ".$width."px; height:".$width."px;}\n";
