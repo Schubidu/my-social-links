@@ -8,4 +8,5 @@
  */
 $config = array(
 	    'piwikCode' => 7,
+	    'piwikUrl' => 'piwik.schult.info',
 );
