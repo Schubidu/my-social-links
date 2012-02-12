@@ -21,17 +21,16 @@ header("HTTP/1.0 300 Multiple Choices", false, 300);
 @header("Content-Type:text/html;charset=utf-8");
 $fileSocialLinks = @file_get_contents('sociallinks.txt');
 if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
-	$styleConfig = array(
-		new StyleSheet('all', '../images/48x48/', 64),
-		new StyleSheet('all and (min-width: 720px)', '../images/96x96/', 96),
-		new StyleSheet('all and (min-width: 1024px)', '../images/128x128/', 128),
-		new StyleSheet('all and (min-width: 1280px)', '../images/256x256/', 256),
-		new StyleSheet('screen and (min-device-width: 720px) and (max-device-width: 1024px)', '../images/256x256/', 224),
-		new StyleSheet('screen and (min-device-width: 720px) and (max-device-width: 1024px) and (orientation:portrait)', '../images/256x256/', 192),
-		new StyleSheet('screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)', '../images/128x128/', 84),
-		new StyleSheet('screen and (max-device-width: 480px) and (orientation:portrait)', '../images/96x96/', 96),
-		new StyleSheet('screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait)', '../images/256x256/', 96),
-	);
+	$styleConfig = new StyleConfig(array());
+	$styleConfig->append(new StyleSheet('only all', '../images/48x48/', 64));
+	$styleConfig->append(new StyleSheet('only all and (min-width: 720px)', '../images/96x96/', 96));
+	$styleConfig->append(new StyleSheet('only all and (min-width: 1024px)', '../images/128x128/', 128));
+	$styleConfig->append(new StyleSheet('only all and (min-width: 1280px)', '../images/256x256/', 256));
+	$styleConfig->append(new StyleSheet('only screen and (min-device-width: 720px) and (max-device-width: 1024px)', '../images/128x128/', 128));
+	$styleConfig->append(new StyleSheet('only screen and (min-device-width: 720px) and (max-device-width: 1024px) and (orientation:portrait)', '../images/256x256/', 192));
+	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)', '../images/128x128/', 72));
+	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (orientation:portrait)', '../images/96x96/', 96));
+	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait)', '../images/256x256/', 96));
 	$htaccess = file_get_contents('.htaccess');
 	$redirectsExp = explode("\n###", $htaccess);
 	$redirectsExp = str_replace("##\nRedirect 301 ", "|", $redirectsExp[0]);
@@ -44,14 +43,9 @@ if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
 		array_push($socialLinks, $socialLink);
 		array_push($icons, substr($socialLink->getInternalUrl(), 1));
 	}
-
-	$styles = '';
-	foreach ($styleConfig as $styleSheet) {
-		$styles .= $styleSheet->generateCode($icons);
-	}
 	$stylesSrc = file_get_contents('css/style.src.css');
 
-	file_put_contents('css/style.css', str_replace("/*<QUERIES/>*/", $styles, $stylesSrc));
+	file_put_contents('css/style.css', str_replace("/*<QUERIES/>*/", $styleConfig->getSource($icons), $stylesSrc));
 	@file_put_contents('sociallinks.txt', serialize($socialLinks));
 } else {
 	$socialLinks = unserialize($fileSocialLinks);

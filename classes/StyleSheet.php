@@ -47,24 +47,15 @@ class StyleSheet
 		$src = $this->getSrc();
 		$width = $this->getWidth();
 		$height = $this->getHeight();
-		$ret = "@media only $query {\n";
+		$ret = "@media $query {\n";
 		if($width !== 0 && $height !== 0){
 			$ret.="\ta {width: ".$width."px; height:".$height."px;}\n";
 		} elseif ($width !== 0 &&  $height === 0){
 			$ret.="\ta {width: ".$width."px; height:".$width."px;}\n";
 		}
-		foreach($icons as $icon){
-			$ret.="\ta.icon-$icon {background-image: url($src$icon.png);}\n";
-		}
 		$ret.="}\n";
-		$retDataUri = $ret;
-		preg_match_all("[url\((.*)\)]", $ret, $treffer, PREG_SET_ORDER);
-		foreach($treffer as $item){
-			$retDataUri = str_replace($item[1], "data:image/png;base64,".base64_encode(file_get_contents(substr($item[1], 3))), $retDataUri);
-		}
-//		var_dump($treffer);
 
-		return $ret.$retDataUri;
+		return $ret;
 	}
 
 	private function setWidth($width)

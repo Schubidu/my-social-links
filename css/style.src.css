@@ -139,7 +139,7 @@ li a:before {
 	}
 }
 
-@media only all and (min-width: 1280px) {
+@media only all and (min-width: 1280px), only screen and (max-device-width: 1024px) and (orientation:landscape) {
 	h1, ul, li {
 		padding: 16px;
 	}
@@ -166,17 +166,8 @@ li a:before {
 }
 
 @media only screen and (max-device-width: 1024px) and (orientation:landscape) {
-	h1, ul, li {
-		padding: 16px;
-	}
-
 	h1 {
 		font-size: 3em;
-	}
-
-	li {
-		margin-left: -16px;
-		margin-top: -16px;
 	}
 }
 
