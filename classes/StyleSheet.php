@@ -58,7 +58,14 @@ class StyleSheet
 			$ret.="\ta.icon-$icon {background-image: url($src$icon.png);}\n";
 		}
 		$ret.="}\n";
-		return $ret;
+		$retDataUri = $ret;
+		preg_match_all("[url\((.*)\)]", $ret, $treffer, PREG_SET_ORDER);
+		foreach($treffer as $item){
+			$retDataUri = str_replace($item[1], "data:image/png;base64,".base64_encode(file_get_contents(substr($item[1], 3))), $retDataUri);
+		}
+//		var_dump($treffer);
+
+		return $ret.$retDataUri;
 	}
 
 	private function setWidth($width)

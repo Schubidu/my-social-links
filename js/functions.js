@@ -25,7 +25,6 @@
 			links = Array.prototype.slice.call(document.querySelectorAll('li a'));
 			colors = new Array(links.length);
 			var docElem = document.documentElement;
-			console.debug(colors);
 			links.forEach(function (link, i) {
 				var imageUrl = getStyle(link, "background-image").replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
 
@@ -37,15 +36,12 @@
 				link.addEventListener('mouseover', function () {
 					var color = colors[i];
 					if (color)
-						docElem.style.backgroundColor = 'rgb(' + color.join(',') +')';
+						docElem.style.backgroundColor = 'rgb(' + color.join(',') + ')';
 				});
 				link.addEventListener('mouseout', function () {
 					docElem.style.backgroundColor = '';
 				});
 			});
-			document.documentElement.style.backgroundColor = '#f0f';
-			document.documentElement.style.backgroundColor = '';
-			//console.debug(document.style.backgroundColor = '#f0f');
 		}, false);
 	}
 })()
