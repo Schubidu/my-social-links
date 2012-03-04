@@ -21,34 +21,33 @@ class StyleConfig extends ArrayObject
 		parent::append($value);
 	}
 
-	public function getSource($icons){
+	public function getSource($icons)
+	{
 		$styles = '';
 		$queries = array();
 		foreach ($this as $styleSheet) {
 			$styles .= $styleSheet->generateCode($icons);
-			if(!isset($queries[$styleSheet->getSrc()])){
+			if (!isset($queries[$styleSheet->getSrc()])) {
 				$queries[$styleSheet->getSrc()] = array();
 			}
 			array_push($queries[$styleSheet->getSrc()], $styleSheet->getQuery());
 		}
-		foreach($queries as $key => $query){
-			$styles.= '@media '.implode(',', $query) . " {\n";
-			$styles.= '/* ' . $key . " */\n";
-			foreach($icons as $icon){
-				$datauri = "data:image/png;base64,".base64_encode(file_get_contents(substr($key.$icon.'.png', 3)));
-				$styles.="\ta.icon-$icon {background-image: url(" . $datauri . ");}\n";
+		foreach ($queries as $key => $query) {
+			$styles .= '@media ' . implode(',', $query) . " {\n";
+			$styles .= '/* ' . $key . " */\n";
+			foreach ($icons as $icon) {
+				$styles .= "\tli a.icon-$icon {" . StyleSheet::backgroundImage_base64($key, $icon) . "}\n";
 			}
-			$styles.= "}\n";
+			$styles .= "}\n";
 		}
 		return $styles;
 	}
 
+	/*	public function __construct($input = null, int $flags = 0, string $iterator_class = "ArrayIterator")
+	   {
 
-/*	public function __construct($input = null, int $flags = 0, string $iterator_class = "ArrayIterator")
-   {
-
-	   parent::__construct($input, $flags, $iterator_class);
-   }*/
+		   parent::__construct($input, $flags, $iterator_class);
+	   }*/
 
 
 }

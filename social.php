@@ -22,7 +22,7 @@ header("HTTP/1.0 300 Multiple Choices", false, 300);
 $fileSocialLinks = @file_get_contents('sociallinks.txt');
 if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
 	$styleConfig = new StyleConfig(array());
-	$styleConfig->append(new StyleSheet('only all', '../images/48x48/', 64));
+	$styleConfig->append(new StyleSheet('only all', '../images/64x64/', 64, 64, true));
 	$styleConfig->append(new StyleSheet('only all and (min-width: 720px)', '../images/96x96/', 96));
 	$styleConfig->append(new StyleSheet('only all and (min-width: 1024px)', '../images/128x128/', 128));
 	$styleConfig->append(new StyleSheet('only all and (min-width: 1280px)', '../images/256x256/', 256));
@@ -52,7 +52,12 @@ if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
 }
 
 $title = 'Stefan Schult';
-?><!DOCTYPE html>
+?><!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <html>
 <head>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1" />
