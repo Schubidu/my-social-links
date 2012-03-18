@@ -41,7 +41,7 @@ ul:hover li a {
 	opacity: .2;
 }
 
-ul:hover li a:hover {
+ul:hover li:hover a {
 	opacity: 1;
 }
 
@@ -80,6 +80,11 @@ li {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+
+}
+
+li:hover {
+	z-index: 99;
 }
 
 li a {

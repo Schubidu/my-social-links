@@ -44,11 +44,12 @@ class StyleSheet
 		return $this->src;
 	}
 
-	public static function dimensions($width = 0, $height = 0){
-		if($width !== 0 && $height !== 0){
-			return "width: ".$width."px; height:".$height."px;";
-		} elseif ($width !== 0 &&  $height === 0){
-			return "width: ".$width."px; height:".$width."px;";
+	public static function dimensions($width = 0, $height = 0)
+	{
+		if ($width !== 0 && $height !== 0) {
+			return "width: " . $width . "px; height:" . $height . "px;";
+		} elseif ($width !== 0 && $height === 0) {
+			return "width: " . $width . "px; height:" . $width . "px;";
 		}
 	}
 
@@ -63,15 +64,16 @@ class StyleSheet
 		return "background-image: url(" . $datauri . ")\n";
 	}
 
-	public function generateCode(array $icons){
+	public function generateCode(array $icons)
+	{
 		$query = $this->getQuery();
 		$ret = '';
-		if($this->getUseAsDefault()){
-			$ret.= $this->generateDefaultCode($icons);
+		if ($this->getUseAsDefault()) {
+			$ret .= $this->generateDefaultCode($icons);
 		}
-		$ret.= "@media $query {\n";
-		$ret.="\tli a {". self::dimensions($this->getWidth(), $this->getHeight()) ."}\n";
-		$ret.="}\n";
+		$ret .= "@media $query {\n";
+		$ret .= "\tli a {" . self::dimensions($this->getWidth(), $this->getHeight()) . "}\n";
+		$ret .= "}\n";
 
 		return $ret;
 	}
