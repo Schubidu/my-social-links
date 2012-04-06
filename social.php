@@ -36,13 +36,9 @@ if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
 	$redirectsExp = str_replace("##\nRedirect 301 ", "|", $redirectsExp[0]);
 	$redirectsExp = str_replace("##", "", $redirectsExp);
 	$redirects = explode("\n", $redirectsExp);
-	$socialLinks = array();
-	$icons = array();
-	foreach ($redirects as $redirect) {
-		$socialLink = SocialLink::initFromHtAccess($redirect . "");
-		array_push($socialLinks, $socialLink);
-		array_push($icons, substr($socialLink->getInternalUrl(), 1));
-	}
+	$socialLinks = SocialLinkCollection::initFromHtaccess();
+	$icons = $socialLinks->toIcons();
+
 	$stylesSrc = file_get_contents('css/style.src.css');
 
 	file_put_contents('css/style.css', str_replace("/*<QUERIES/>*/", $styleConfig->getSource($icons), $stylesSrc));

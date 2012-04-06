@@ -74,6 +74,7 @@ class SocialLink {
 	 * @return SocialLink
 	 */
 	public static function initFromHtAccess($socialStr) {
+
 		$social = new SocialLink();
 
 		$socialExp = explode("|", $socialStr);
