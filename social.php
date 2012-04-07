@@ -59,7 +59,11 @@ $title = 'Stefan Schult';
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1" />
 	<link href='css/style.css' rel="stylesheet" type='text/css' />
 	<title><?php echo $title ?></title>
-
+	<link rel="icon" type="image/png" href="/images/favicon.png" />
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144.png" />
 </head>
 <body>
 <h1><?php echo $title ?></h1>

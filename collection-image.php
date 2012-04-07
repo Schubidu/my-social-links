@@ -23,7 +23,7 @@ if(isset($_REQUEST['patchwork'])){
 	@header("Content-Type:text/plain");
 
 	$image = base64_decode($_REQUEST['patchwork']);
-	$fileName = 'collection-' . $_REQUEST['maxDimension'] . '.png';
+	$fileName = 'images/' . $_REQUEST['filename'];
 	file_put_contents($fileName, $image);
 	echo $fileName;
 	exit;
@@ -34,31 +34,65 @@ if(isset($_REQUEST['patchwork'])){
 
 <script>
 	(function(collection){
-		function sendPatchwork(dataUrl, maxDimension){
+		var sizes = [
+			{
+				name: "apple-touch-icon",
+				type: "png",
+				size: 57
+			},
+			{
+				name: "apple-touch-icon-114",
+				type: "png",
+				size: 114
+			},
+			{
+				name: "apple-touch-icon-72",
+				type: "png",
+				size: 72
+			},
+			{
+				name: "apple-touch-icon-144",
+				type: "png",
+				size: 144
+
+			},
+			{
+				name: "favicon",
+				type: "png",
+				size: 32
+
+			}
+		];
+
+		function sendPatchwork(dataUrl, maxDim, filename, filetype){
 			var patchWorkImage = new Image(), patchwork = document.createElement('canvas'), patchworkCtx= patchwork.getContext('2d');
-			patchwork.width = patchwork.height = maxDimension;
+			patchwork.width = patchwork.height = maxDim;
 
+			patchWorkImage.addEventListener('load', function () {
+				patchworkCtx.drawImage(patchWorkImage, 0, 0, maxDim, maxDim);
+
+				var patchWorkData = patchwork.toDataURL();
+				document.documentElement.appendChild(patchwork);
+
+				var formData = new FormData();
+
+				formData.append("filename", [filename,filetype].join('.'));
+				formData.append("filetype", filetype);
+				formData.append("patchwork", patchWorkData.substr("data:image/png;base64,".length));
+
+				var oXHR = new XMLHttpRequest();
+				oXHR.open("POST", "<?php echo $_SERVER["PHP_SELF"]; ?>");
+				oXHR.onreadystatechange = function(){
+					if (this.readyState == 4) {
+						console.log(this.responseText);
+					}
+				};
+				oXHR.send(formData);
+
+			});
 			patchWorkImage.src = dataUrl;
-			patchWorkImage.width = patchWorkImage.height = maxDimension;
-			console.debug(patchWorkImage);
+			patchWorkImage.width = patchWorkImage.height = maxDim;
 
-			patchworkCtx.drawImage(patchWorkImage, 0, 0, maxDimension, maxDimension);
-
-			var patchWorkData = patchwork.toDataURL();
-
-			var formData = new FormData();
-
-			formData.append("maxDimension", maxDimension);
-			formData.append("patchwork", patchWorkData.substr("data:image/png;base64,".length));
-
-			var oXHR = new XMLHttpRequest();
-			oXHR.open("POST", "<?php echo $_SERVER["PHP_SELF"]; ?>");
-			oXHR.onreadystatechange = function(){
-				if (this.readyState == 4) {
-					console.debug(this, arguments);
-				}
-			};
-			oXHR.send(formData);
 		}
 
 		var sqrt = Math.sqrt(collection.length);
@@ -81,7 +115,9 @@ if(isset($_REQUEST['patchwork'])){
 				ctx.drawImage(this, xPos * myWidth, yPos *myWidth);
 				allImagesLoaded++;
 				if(allImagesLoaded == collection.length){
-					sendPatchwork(canvas.toDataURL(), maxDimension);
+					sizes.forEach(function(sizeItem){
+						sendPatchwork(canvas.toDataURL(), sizeItem.size, sizeItem.name, sizeItem.type);
+					});
 				}
 			});
 			img.src = (defaultIcon).replace('00', name);
