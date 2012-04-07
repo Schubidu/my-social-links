@@ -34,7 +34,7 @@ li {
 }
 
 li:hover {
-	background: #fff;
+	/*background: #fff;*/
 }
 
 ul:hover li a {
@@ -92,6 +92,12 @@ li a {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	position: relative;
+}
+
+li a:hover {
+	-moz-box-shadow: -5px -5px 8px #FFF, -5px 5px 8px #FFF, 5px 5px 8px #FFF, 5px -5px 8px #FFF;
+	-webkit-box-shadow: -5px -5px 8px #FFF, -5px 5px 8px #FFF, 5px 5px 8px #FFF, 5px -5px 8px #FFF;
+	box-shadow: -5px -5px 8px #FFF, -5px 5px 8px #FFF, 5px 5px 8px #FFF, 5px -5px 8px #FFF;
 }
 
 html, li a:before {

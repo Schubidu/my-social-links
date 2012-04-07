@@ -27,18 +27,18 @@
             var docElem = doc.documentElement;
             lis.forEach(function (li, i) {
                 var imageUrl = getStyle(li.querySelectorAll('a')[0], "background-image").replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-
+				var a = li.querySelectorAll('a')[0];
                 var img = new Image();
                 img.src = imageUrl;
                 img.addEventListener('load', function () {
                     colors[i] = (getRGB(this));
                 });
-                li.addEventListener('mouseover', function () {
+                a.addEventListener('mouseover', function () {
                     var color = colors[i];
                     if (color)
                         docElem.style.backgroundColor = 'rgb(' + color.join(',') + ')';
                 });
-                li.addEventListener('mouseout', function () {
+                a.addEventListener('mouseout', function () {
                     docElem.style.backgroundColor = '';
                 });
             });
