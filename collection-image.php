@@ -6,7 +6,7 @@
  * Time: 12:12
  * To change this template use File | Settings | File Templates.
  */
-
+session_start();
 function __autoload($class_name)
 {
 	$file = 'classes/' . $class_name . '.php';
@@ -19,7 +19,7 @@ function __autoload($class_name)
 
 $collection = SocialLinkCollection::initFromHtaccess();
 
-if(isset($_REQUEST['patchwork'])){
+if(isset($_SESSION['myid']) && isset($_REQUEST['patchwork'])){
 	@header("Content-Type:text/plain");
 
 	$image = base64_decode($_REQUEST['patchwork']);
@@ -28,6 +28,8 @@ if(isset($_REQUEST['patchwork'])){
 	echo $fileName;
 	exit;
 }
+
+$_SESSION['myid'] = '001';
 
 @header("Content-Type:text/html;charset=utf-8");
 ?>
