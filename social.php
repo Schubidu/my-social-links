@@ -21,6 +21,7 @@ header("HTTP/1.0 300 Multiple Choices", false, 300);
 @header("Content-Type:text/html;charset=utf-8");
 $fileSocialLinks = @file_get_contents('sociallinks.txt');
 if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
+	$rewrite = true;
 	$styleConfig = new StyleConfig(array());
 	$styleConfig->append(new StyleSheet('only all', '../images/64x64/', 64, 64, true));
 	$styleConfig->append(new StyleSheet('only all and (min-width: 720px)', '../images/96x96/', 96));
@@ -66,6 +67,9 @@ $title = 'Stefan Schult';
 	<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144.png" />
 </head>
 <body>
+<?php if(isset($rewrite)): ?>
+	<iframe src="collection-image.php" border=0 scrolling="no" frameborder="0" style="width: 0; height: 0;"></iframe>
+<?php endif ?>
 <h1><?php echo $title ?></h1>
 <ul>
 	<?php foreach ($socialLinks as $socialLink) { ?>

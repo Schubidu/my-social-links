@@ -66,7 +66,7 @@ $_SESSION['myid'] = '001';
 			}
 		];
 
-		function sendPatchwork(dataUrl, maxDim, filename, filetype){
+		function sendPatchwork(callback, dataUrl, maxDim, filename, filetype){
 			var patchWorkImage = new Image(), patchwork = document.createElement('canvas'), patchworkCtx= patchwork.getContext('2d');
 			patchwork.width = patchwork.height = maxDim;
 
@@ -86,7 +86,7 @@ $_SESSION['myid'] = '001';
 				oXHR.open("POST", "<?php echo $_SERVER["PHP_SELF"]; ?>");
 				oXHR.onreadystatechange = function(){
 					if (this.readyState == 4) {
-						console.log(this.responseText);
+						callback(this.responseText);
 					}
 				};
 				oXHR.send(formData);
@@ -104,7 +104,7 @@ $_SESSION['myid'] = '001';
 		var canvas = document.createElement('canvas');
 		canvas.width = canvas.height = 0;
 		var ctx = canvas.getContext('2d');
-		var allImagesLoaded = 0;
+		var allImagesLoaded = 0, allPatchworkSended = 0;
 		collection.forEach(function(name, collPos){
 			var img = new Image();
 			img.addEventListener('load', function () {
@@ -118,7 +118,12 @@ $_SESSION['myid'] = '001';
 				allImagesLoaded++;
 				if(allImagesLoaded == collection.length){
 					sizes.forEach(function(sizeItem){
-						sendPatchwork(canvas.toDataURL(), sizeItem.size, sizeItem.name, sizeItem.type);
+						sendPatchwork(function(){
+							allPatchworkSended++;
+							if(allPatchworkSended == sizes.length){
+								console.debug(parent.document.location.href);
+							}
+						},canvas.toDataURL(), sizeItem.size, sizeItem.name, sizeItem.type);
 					});
 				}
 			});
