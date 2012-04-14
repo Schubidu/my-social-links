@@ -23,7 +23,7 @@ if(isset($_SESSION['myid']) && isset($_REQUEST['patchwork'])){
 	@header("Content-Type:text/plain");
 
 	$image = base64_decode($_REQUEST['patchwork']);
-	$fileName = 'images/' . $_REQUEST['filename'];
+	$fileName = 'images/' . $_REQUEST['fileName'];
 	file_put_contents($fileName, $image);
 	echo $fileName;
 	exit;
@@ -39,48 +39,46 @@ $_SESSION['myid'] = '001';
 		var sizes = [
 			{
 				name: "apple-touch-icon",
-				type: "png",
 				size: 57
 			},
 			{
 				name: "apple-touch-icon-114",
-				type: "png",
 				size: 114
 			},
 			{
 				name: "apple-touch-icon-72",
-				type: "png",
 				size: 72
 			},
 			{
 				name: "apple-touch-icon-144",
-				type: "png",
 				size: 144
 
 			},
 			{
 				name: "favicon",
-				type: "png",
-				size: 32
+				type: "vnd.microsoft.icon",
+				suffix: 'ico',
+				size: 16
 
 			}
 		];
 
-		function sendPatchwork(callback, dataUrl, maxDim, filename, filetype){
-			var patchWorkImage = new Image(), patchwork = document.createElement('canvas'), patchworkCtx= patchwork.getContext('2d');
-			patchwork.width = patchwork.height = maxDim;
+		function sendPatchwork(callback, dataUrl, item){
+			var patchWorkImage = new Image(), _canvas = document.createElement('canvas'), patchworkCtx= _canvas.getContext('2d'),
+				maxDim = item.size, fileName = item.name, fileType = (item.type) ? item.type : 'png', fileSuffix = (item.suffix) ? item.suffix : 'png';
+			_canvas.width = _canvas.height = maxDim;
 
 			patchWorkImage.addEventListener('load', function () {
 				patchworkCtx.drawImage(patchWorkImage, 0, 0, maxDim, maxDim);
 
-				var patchWorkData = patchwork.toDataURL();
-				document.documentElement.appendChild(patchwork);
+				var patchWorkData = _canvas.toDataURL('image/' + fileType);
+				document.documentElement.appendChild(_canvas);
 
 				var formData = new FormData();
 
-				formData.append("filename", [filename,filetype].join('.'));
-				formData.append("filetype", filetype);
-				formData.append("patchwork", patchWorkData.substr("data:image/png;base64,".length));
+				formData.append("fileName", [fileName,fileSuffix].join('.'));
+				formData.append("fileType", fileType);
+				formData.append("patchwork", patchWorkData.substr(("data:image/" + fileType + ";base64,").length));
 
 				var oXHR = new XMLHttpRequest();
 				oXHR.open("POST", "<?php echo $_SERVER["PHP_SELF"]; ?>");
@@ -121,7 +119,8 @@ $_SESSION['myid'] = '001';
 						sendPatchwork(function(){
 							allPatchworkSended++;
 							if(allPatchworkSended == sizes.length){
-								console.debug(parent.document.location.href);
+								var href = parent.document.location.href;
+								parent.document.location.href = href.substring(0, href.indexOf('?'));
 							}
 						},canvas.toDataURL(), sizeItem.size, sizeItem.name, sizeItem.type);
 					});
