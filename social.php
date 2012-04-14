@@ -17,10 +17,24 @@ function __autoload($class_name)
 }
 
 require_once("config.php");
-header("HTTP/1.0 300 Multiple Choices", false, 300);
 @header("Content-Type:text/html;charset=utf-8");
 $fileSocialLinks = @file_get_contents('sociallinks.txt');
+if (isset($_GET['rewrite']) || isset($_REQUEST['patchwork']) || trim($fileSocialLinks) == ""){
+	session_start();
+}
+
+if(isset($_SESSION['myid']) && isset($_REQUEST['patchwork'])){
+	@header("Content-Type:text/plain");
+
+	$image = base64_decode($_REQUEST['patchwork']);
+	$fileName = 'images/' . $_REQUEST['fileName'];
+	file_put_contents($fileName, $image);
+	echo $fileName;
+	exit;
+}
+
 if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
+	$_SESSION['myid'] = '001';
 	$rewrite = true;
 	$styleConfig = new StyleConfig(array());
 	$styleConfig->append(new StyleSheet('only all', '../images/64x64/', 64, 64, true));
@@ -45,6 +59,7 @@ if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
 	file_put_contents('css/style.css', str_replace("/*<QUERIES/>*/", $styleConfig->getSource($icons), $stylesSrc));
 	@file_put_contents('sociallinks.txt', serialize($socialLinks));
 } else {
+	header("HTTP/1.0 300 Multiple Choices", false, 300);
 	$socialLinks = unserialize($fileSocialLinks);
 }
 
@@ -55,12 +70,11 @@ $title = 'Stefan Schult';
 <!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<html>
 <head>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1" />
 	<link href='css/style.css' rel="stylesheet" type='text/css' />
 	<title><?php echo $title ?></title>
-<!--	<link rel="icon" type="image/png" href="/images/favicon.png" />-->
+
 	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72.png" />
@@ -68,9 +82,6 @@ $title = 'Stefan Schult';
 	<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144.png" />
 </head>
 <body>
-<?php if(isset($rewrite)): ?>
-	<iframe src="collection-image.php" border=0 scrolling="no" frameborder="0" style="width: 0; height: 0;"></iframe>
-<?php endif ?>
 <h1><?php echo $title ?></h1>
 <ul>
 	<?php foreach ($socialLinks as $socialLink) { ?>
@@ -81,6 +92,14 @@ $title = 'Stefan Schult';
 	<?php } ?>
 </ul>
 <script src="js/functions.js"></script>
+
+<?php if(isset($rewrite)): ?>
+<script src="js/patchwork.js"></script>
+<script>
+	patchwork(<?php echo json_encode($icons); ?>, "/images/512x512/00.png");
+</script>
+<?php endif ?>
+
 <!-- Piwik -->
 <script type="text/javascript">
 	var pkBaseURL = (("https:" == document.location.protocol) ? "https://<?php echo $config['piwikUrl'] ?>/" : "http://<?php echo $config['piwikUrl'] ?>/");
