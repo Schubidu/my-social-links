@@ -1,0 +1,298 @@
+[class^="icon-"],
+[class*=" icon-"] {
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  background-position: center center;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  span {
+    @extend %visuallyhidden;
+  }
+}
+
+%icon-aim {
+  background-color: rgb(255, 32, 26);
+  background-image: inline-image('../images/justvector/svg/aim.svg');
+}
+
+%icon-amazon {
+  background-color: rgb(255, 131, 34);
+  background-image: inline-image('../images/justvector/svg/amazon.svg');
+}
+
+%icon-apple {
+  background-color: rgb(126, 135, 139);
+  background-image: inline-image('../images/justvector/svg/apple.svg');
+}
+
+%icon-aws {
+  background-color: rgb(255, 114, 51);
+  background-image: inline-image('../images/justvector/svg/aws.svg');
+}
+
+%icon-bebo {
+  background-color: rgb(255, 0, 26);
+  background-image: inline-image('../images/justvector/svg/bebo.svg');
+}
+
+%icon-behance {
+  background-color: rgb(19, 119, 255);
+  background-image: inline-image('../images/justvector/svg/behance.svg');
+}
+
+%icon-blogger {
+  background-color: rgb(255, 28, 21);
+  background-image: inline-image('../images/justvector/svg/blogger.svg');
+}
+
+%icon-brightkite {
+  background-color: rgb(105, 223, 63);
+  background-image: inline-image('../images/justvector/svg/brightkite.svg');
+}
+
+%icon-dailybooth {
+  background-color: rgb(23, 163, 251);
+  background-image: inline-image('../images/justvector/svg/dailybooth.svg');
+}
+
+%icon-designfloat {
+  background-color: rgb(255, 152, 17);
+  background-image: inline-image('../images/justvector/svg/designfloat.svg');
+}
+
+%icon-deviantart {
+  background-color: rgb(95, 113, 111);
+  background-image: inline-image('../images/justvector/svg/deviantart.svg');
+}
+
+%icon-digg {
+  background-color: rgb(71, 107, 163);
+  background-image: inline-image('../images/justvector/svg/digg.svg');
+}
+
+%icon-dribbble {
+  background-color: rgb(242, 103, 152);
+  background-image: inline-image('../images/justvector/svg/dribbble.svg');
+}
+
+%icon-dropbox {
+  background-color: rgb(0, 139, 211);
+  background-image: inline-image('../images/justvector/svg/dropbox.svg');
+}
+
+%icon-drupal {
+  background-color: rgb(0, 139, 202);
+  background-image: inline-image('../images/justvector/svg/drupal.svg');
+}
+
+%icon-ebay {
+  background-color: rgb(12, 0, 149);
+  background-image: inline-image('../images/justvector/svg/ebay.svg');
+}
+
+%icon-etsy {
+  background-color: rgb(255, 21, 17);
+  background-image: inline-image('../images/justvector/svg/etsy.svg');
+}
+
+%icon-evernote {
+  background-color: rgb(135, 196, 65);
+  background-image: inline-image('../images/justvector/svg/evernote.svg');
+}
+
+%icon-facebook {
+  background-color: rgb(74, 110, 169);
+  background-image: inline-image('../images/justvector/svg/facebook.svg');
+}
+
+%icon-feedburner {
+  background-color: rgb(0, 114, 196);
+  background-image: inline-image('../images/justvector/svg/feedburner.svg');
+}
+
+%icon-flickr {
+  background-color: rgb(255, 47, 150);
+  background-image: inline-image('../images/justvector/svg/flickr.svg');
+}
+
+%icon-formspring {
+  background-color: rgb(0, 125, 189);
+  background-image: inline-image('../images/justvector/svg/formspring.svg');
+}
+
+%icon-forrst {
+  background-color: rgb(0, 162, 108);
+  background-image: inline-image('../images/justvector/svg/forrst.svg');
+}
+
+%icon-foursquare {
+  background-color: rgb(0, 134, 191);
+  background-image: inline-image('../images/justvector/svg/foursquare.svg');
+}
+
+%icon-github {
+  background-color: rgb(59, 59, 59);
+  background-image: inline-image('../images/justvector/svg/github.svg');
+}
+
+%icon-google {
+  background-color: rgb(0, 87, 200);
+  background-image: inline-image('../images/justvector/svg/google.svg');
+}
+
+%icon-google-plus {
+  background-color: rgb(228, 96, 68);
+  background-image: inline-image('../images/justvector/svg/google-plus.svg');
+}
+
+%icon-gowalla {
+  background-color: rgb(255, 177, 39);
+  background-image: inline-image('../images/justvector/svg/gowalla.svg');
+}
+
+%icon-linkedin {
+  background-color: rgb(0, 151, 189);
+  background-image: inline-image('../images/justvector/svg/linkedin.svg');
+}
+
+%icon-lastfm {
+  background-color: rgb(224, 39, 3);
+  background-image: inline-image('../images/justvector/svg/lastfm.svg');
+}
+
+%icon-livejournal {
+  background-color: rgb(0, 160, 192);
+  background-image: inline-image('../images/justvector/svg/livejournal.svg');
+}
+
+%icon-meetup {
+  background-color: rgb(255, 0, 47);
+  background-image: inline-image('../images/justvector/svg/meetup.svg');
+}
+
+%icon-myspace {
+  background-color: rgb(0, 0, 0);
+  background-image: inline-image('../images/justvector/svg/myspace.svg');
+}
+
+%icon-newsvine {
+  background-color: rgb(3, 101, 44);
+  background-image: inline-image('../images/justvector/svg/newsvine.svg');
+}
+
+%icon-orkut {
+  background-color: rgb(253, 70, 161);
+  background-image: inline-image('../images/justvector/svg/orkut.svg');
+}
+
+%icon-path {
+  background-color: rgb(255, 0, 39);
+  background-image: inline-image('../images/justvector/svg/path.svg');
+}
+
+%icon-picasa {
+  background-color: rgb(121, 121, 121);
+  background-image: inline-image('../images/justvector/svg/picasa.svg');
+}
+
+%icon-qik {
+  background-color: rgb(0, 146, 165);
+  background-image: inline-image('../images/justvector/svg/qik.svg');
+}
+
+%icon-quora {
+  background-color: rgb(235, 0, 6);
+  background-image: inline-image('../images/justvector/svg/quora.svg');
+}
+
+%icon-rdio {
+  background-color: rgb(0, 127, 197);
+  background-image: inline-image('../images/justvector/svg/rdio.svg');
+}
+
+%icon-reddit {
+  background-color: rgb(255, 92, 6);
+  background-image: inline-image('../images/justvector/svg/reddit.svg');
+}
+
+%icon-rss {
+  background-color: rgb(244, 184, 63);
+  background-image: inline-image('../images/justvector/svg/rss.svg');
+}
+
+%icon-skype {
+  background-color: rgb(0, 184, 237);
+  background-image: inline-image('../images/justvector/svg/skype.svg');
+}
+
+%icon-slashdot {
+  background-color: rgb(0, 108, 102);
+  background-image: inline-image('../images/justvector/svg/slashdot.svg');
+}
+
+%icon-slideshare {
+  background-color: rgb(12, 168, 170);
+  background-image: inline-image('../images/justvector/svg/slideshare.svg');
+}
+
+%icon-soundcloud {
+  background-color: rgb(255, 84, 25);
+  background-image: inline-image('../images/justvector/svg/soundcloud.svg');
+}
+
+%icon-spotify {
+  background-color: rgb(123, 184, 47);
+  background-image: inline-image('../images/justvector/svg/spotify.svg');
+}
+
+%icon-steam {
+  background-color: rgb(0, 0, 0);
+  background-image: inline-image('../images/justvector/svg/steam.svg');
+}
+
+%icon-stumbleupon {
+  background-color: rgb(136, 208, 84);
+  background-image: inline-image('../images/justvector/svg/stumbleupon.svg');
+}
+
+%icon-tumblr {
+  background-color: rgb(57, 89, 118);
+  background-image: inline-image('../images/justvector/svg/tumblr.svg');
+}
+
+%icon-twitter {
+  background-color: rgb(50, 222, 244);
+  background-image: inline-image('../images/justvector/svg/twitter.svg');
+}
+
+%icon-vimeo {
+  background-color: rgb(91, 200, 255);
+  background-image: inline-image('../images/justvector/svg/vimeo.svg');
+}
+
+%icon-wikipedia {
+  background-color: rgb(0, 0, 0);
+  background-image: inline-image('../images/justvector/svg/wikipedia.svg');
+}
+
+%icon-wordpress {
+  background-color: rgb(88, 88, 88);
+  background-image: inline-image('../images/justvector/svg/wordpress.svg');
+}
+
+%icon-xing {
+  background-color: rgb(0, 96, 94);
+  background-image: inline-image('../images/justvector/svg/xing.svg');
+}
+
+%icon-yelp {
+  background-color: rgb(206, 34, 0);
+  background-image: inline-image('../images/justvector/svg/yelp.svg');
+}
+
+%icon-youtube {
+  background-color: rgb(230, 74, 65);
+  background-image: inline-image('../images/justvector/svg/youtube.svg');
+}

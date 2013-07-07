@@ -1,0 +1,130 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
+
+%clearfix {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+%visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+* {
+  @include box-sizing(border-box);
+}
+
+html {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  @include transition(all 0.3s ease-in-out);
+}
+
+html, body, ul {
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.5em;
+  padding: .5em;
+  @include transition(all 0.3s ease-in-out);
+
+  position: relative;
+  .chosen & {
+    left: -100%;
+  }
+}
+
+ul {
+  @extend %clearfix;
+  padding: .5em .5em 0;
+}
+
+li {
+  width: 10%;
+  height: 100px;
+  float: left;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: .5em;
+
+  @media screen and (max-width: 64em) {
+    width: 20%;
+  }
+  @media screen and (max-width: 32.125em) {
+    width: (100%/3)+0;
+  }
+  @media screen and (max-width: 19.8125em) {
+    width: 50%;
+  }
+  @media screen and (max-width: 13.5em) {
+    width: 100%;
+  }
+}
+
+a {
+    text-decoration: none;
+    color: #FFF;
+  &:hover:before {
+    content: attr(title);
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-indent: 0;
+    font-size: 1.5em;
+    padding: .5em;
+    color: #FFF;
+  }
+}
+
+@import "icons";
+
+.icon-google-plus {
+  @extend %icon-google-plus;
+}
+
+.icon-xing {
+  @extend %icon-xing;
+}
+
+.icon-twitter {
+  @extend %icon-twitter;
+}
+
+.icon-facebook {
+  @extend %icon-facebook;
+}
+
+.icon-github {
+  @extend %icon-github;
+}
+
+.icon-lastfm {
+  @extend %icon-lastfm;
+}
+
+.icon-flickr {
+  @extend %icon-flickr;
+}
+
+.icon-youtube {
+  @extend %icon-youtube;
+}
+
+.icon-vimeo {
+  @extend %icon-vimeo;
+}

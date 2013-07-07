@@ -20,6 +20,7 @@ Redirect 301 /vimeo http://schultstefan.de/track?v=/vimeo
 Redirect 301 /+ /google-plus
 Redirect 301 /plus /google-plus
 
+DirectoryIndex social.php
 
 # Apache configuration file
 # httpd.apache.org/docs/2.2/mod/quickreference.html

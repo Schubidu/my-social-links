@@ -36,27 +36,33 @@ if(isset($_SESSION['myid']) && isset($_REQUEST['patchwork'])){
 if (isset($_GET['rewrite']) || trim($fileSocialLinks) == "") {
 	$_SESSION['myid'] = '001';
 	$rewrite = true;
-	$styleConfig = new StyleConfig(array());
-	$styleConfig->append(new StyleSheet('only all', '../images/64x64/', 64, 64, true));
-	$styleConfig->append(new StyleSheet('only all and (min-width: 720px)', '../images/96x96/', 96));
-	$styleConfig->append(new StyleSheet('only all and (min-width: 1024px)', '../images/128x128/', 128));
-	$styleConfig->append(new StyleSheet('only all and (min-width: 1280px)', '../images/256x256/', 256));
-	$styleConfig->append(new StyleSheet('only screen and (min-device-width: 720px) and (max-device-width: 1024px)', '../images/128x128/', 128));
-	$styleConfig->append(new StyleSheet('only screen and (min-device-width: 720px) and (max-device-width: 1024px) and (orientation:portrait)', '../images/256x256/', 192));
-	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)', '../images/128x128/', 72));
-	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (orientation:portrait)', '../images/96x96/', 96));
-	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait)', '../images/256x256/', 96));
+#	$styleConfig = new StyleConfig(array());
+#	$styleConfig->append(new StyleSheet('only all', '../images/64x64/', 64, 64, true));
+#	$styleConfig->append(new StyleSheet('only all and (min-width: 720px)', '../images/96x96/', 96));
+#	$styleConfig->append(new StyleSheet('only all and (min-width: 1024px)', '../images/128x128/', 128));
+#	$styleConfig->append(new StyleSheet('only all and (min-width: 1280px)', '../images/256x256/', 256));
+#	$styleConfig->append(new StyleSheet('only screen and (min-device-width: 720px) and (max-device-width: 1024px)', '../images/128x128/', 128));
+#	$styleConfig->append(new StyleSheet('only screen and (min-device-width: 720px) and (max-device-width: 1024px) and (orientation:portrait)', '../images/256x256/', 192));
+#	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)', '../images/128x128/', 72));
+#	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (orientation:portrait)', '../images/96x96/', 96));
+#	$styleConfig->append(new StyleSheet('only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait)', '../images/256x256/', 96));
 	$htaccess = file_get_contents('.htaccess');
 	$redirectsExp = explode("\n###", $htaccess);
 	$redirectsExp = str_replace("##\nRedirect 301 ", "|", $redirectsExp[0]);
 	$redirectsExp = str_replace("##", "", $redirectsExp);
 	$redirects = explode("\n", $redirectsExp);
 	$socialLinks = SocialLinkCollection::initFromHtaccess();
+	var_dump($socialLinks);
 	$icons = $socialLinks->toIcons();
 
+    foreach($socialLinks as $socialLink){
+    /** var SocialLink $socialLink */
+        $internalUrl = substr($socialLink->getInternalUrl(), 1);
+        echo '.icon-' . $internalUrl . ' {@extend %icon-' . $internalUrl  . ';}';
+    }
 	$stylesSrc = file_get_contents('css/style.src.css');
 
-	file_put_contents('css/style.css', str_replace("/*<QUERIES/>*/", $styleConfig->getSource($icons), $stylesSrc));
+	//file_put_contents('css/style.css', str_replace("/*<QUERIES/>*/", $styleConfig->getSource($icons), $stylesSrc));
 	@file_put_contents('sociallinks.txt', serialize($socialLinks));
 } else {
 	header("HTTP/1.0 300 Multiple Choices", false, 300);
@@ -72,7 +78,7 @@ $title = 'Stefan Schult - my social links';
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1" />
-	<link href='css/style.css' rel="stylesheet" type='text/css' />
+	<link href='css/screen.css' rel="stylesheet" type='text/css' />
 	<title><?php echo $title ?></title>
 
 	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -91,14 +97,8 @@ $title = 'Stefan Schult - my social links';
 	</li>
 	<?php } ?>
 </ul>
-<script src="js/functions.js"></script>
 
-<?php if(isset($rewrite)): ?>
-<script src="js/patchwork.js"></script>
-<script>
-	patchwork(<?php echo json_encode($icons); ?>, "/images/512x512/00.png");
-</script>
-<?php endif ?>
+<script src="js/functions.js"></script>
 
 <!-- Piwik -->
 <script type="text/javascript">

@@ -10,6 +10,7 @@ nbproject
 *.sublime-project
 *.sublime-workspace
 .idea
+.sass-cache
 
 sociallinks.txt
 .htaccess
